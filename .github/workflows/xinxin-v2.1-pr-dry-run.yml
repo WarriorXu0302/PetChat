@@ -1,0 +1,264 @@
+name: Xinxin v2.1 PR Dry-Run QA
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - 'xinxin-run/**'
+      - 'scripts/**'
+      - '.github/workflows/xinxin-v2.1-pr-dry-run.yml'
+      - '.github/workflows/xinxin-v2.1-dry-run.yml'
+      - '.github/workflows/xinxin-v2.1-release-check.yml'
+      - '.github/workflows/xinxin-v2.1-release-gate.yml'
+  workflow_dispatch:
+    inputs:
+      run_command_center:
+        description: "Whether to run release command center (baseline+gate+all) diagnostics"
+        required: false
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
+
+jobs:
+  pr-dry-run:
+    name: Xinxin v2.1 PR Dry-Run
+    runs-on: windows-latest
+    timeout-minutes: 45
+    permissions:
+      contents: read
+      actions: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run all flow (non-blocking gate)
+        id: run
+        shell: pwsh
+        run: |
+          $runId = "${{ github.run_id }}"
+          $pr = "${{ github.event.pull_request.number }}"
+          $runIdPrefix = "pr-${pr}"
+          $safeRunIdPrefix = $runIdPrefix -replace '[\\/:*?"<>|\s]+', '_'
+          $artifactName = "xinxin-v2.1-pr-dry-run-${safeRunIdPrefix}-run${runId}"
+          $runLogName = "run-log-pr-${pr}-${runId}.md"
+          $runLogSummaryName = "run-log-pr-${pr}-${runId}-summary.json"
+          $releaseGateName = "release-gate-pr-${pr}-${runId}.json"
+
+          $runDir = ".\xinxin-run"
+          $runLogPath = Join-Path $runDir (Join-Path 'qa' $runLogName)
+          $runLogSummaryPath = Join-Path $runDir (Join-Path 'qa' $runLogSummaryName)
+          $releaseGatePath = Join-Path $runDir (Join-Path 'qa' $releaseGateName)
+          $runStatusPath = Join-Path $runDir (Join-Path 'qa' 'run-status.json')
+          $nextActionPath = Join-Path $runDir (Join-Path 'qa' 'next-action-recommendation.md')
+          $collectPath = Join-Path $runDir (Join-Path 'qa' 'next-action-collect.json')
+          $remediationPlanPath = Join-Path $runDir (Join-Path 'qa' 'remediation-plan.json')
+          $remediationPlanMarkdownPath = Join-Path $runDir (Join-Path 'qa' 'remediation-plan.md')
+          $recoveryDigestPath = Join-Path $runDir (Join-Path 'qa' 'recovery-digest.json')
+          $recoveryDigestMarkdownPath = Join-Path $runDir (Join-Path 'qa' 'recovery-digest.md')
+          $runIdPrefix = "pr-${pr}"
+          $safeRunIdPrefix = $runIdPrefix -replace '[\\/:*?"<>|\s]+', '_'
+          if (-not (Test-Path (Split-Path $runStatusPath))) {
+            New-Item -ItemType Directory -Path (Split-Path $runStatusPath) -Force | Out-Null
+          }
+          if (-not (Test-Path $runStatusPath)) {
+            '{}' | Set-Content -Path $runStatusPath -Encoding utf8
+          }
+
+          .\scripts\run-xinxin-v2.1.ps1 `
+            -Mode all `
+            -RunDir $runDir `
+            -ReviewRunLog `
+            -RunLogOutputFile $runLogPath `
+            -RunLogSummaryFile $runLogSummaryPath `
+            -ReleaseGateOutputFile $releaseGatePath
+          .\scripts\collect-pet-run-status.ps1 -RunDir $runDir
+          $next = & .\scripts\resolve-xinxin-next-action.ps1 -ReleaseGatePath $releaseGatePath -RunStatusPath $runStatusPath -RunIdPrefix $safeRunIdPrefix -MarkdownOutputPath $nextActionPath
+          if ($next) {
+            $nextJson = $next | ConvertFrom-Json
+            $nextCommand = $nextJson.recommended_command
+            $nextStep = $nextJson.recommended_step
+            $nextReason = $nextJson.reason
+            $schemaValid = if ($nextJson.schema_validation) { $nextJson.schema_validation.valid } else { $false }
+            $schemaErrors = if ($nextJson.schema_validation -and $nextJson.schema_validation.errors) { $nextJson.schema_validation.errors.Count } else { 1 }
+            $recommendCount = if ($nextJson.recommended_commands) { $nextJson.recommended_commands.Count } else { 0 }
+          } else {
+            $nextCommand = ''
+            $nextStep = 'unknown'
+            $nextReason = 'next-action resolution missing'
+            $schemaValid = $false
+            $schemaErrors = 1
+            $recommendCount = 0
+          }
+          $collectOutput = & .\scripts\collect-xinxin-next-artifacts.ps1 `
+            -RunDir $runDir `
+            -RunIdPrefix $safeRunIdPrefix `
+            -OutputPath $collectPath
+          $collectSummary = if ($collectOutput) { $collectOutput | ConvertFrom-Json } else { $null }
+          $remediationSummary = $null
+          try {
+            $remediationOutput = & .\scripts\infer-xinxin-remediation-plan.ps1 -CollectPath $collectPath -RunIdPrefix $safeRunIdPrefix -OutputPath $remediationPlanPath -MarkdownOutputPath $remediationPlanMarkdownPath
+            if ($remediationOutput) {
+              $remediationSummary = $remediationOutput | ConvertFrom-Json
+            }
+          } catch {
+            Write-Warning "Failed to infer remediation plan: $($_.Exception.Message)"
+          }
+          try {
+            $digestOutput = & .\scripts\summarize-xinxin-recovery.ps1 `
+              -RunDir $runDir `
+              -RunIdPrefix $safeRunIdPrefix `
+              -CollectPath $collectPath `
+              -RemediationPath $remediationPlanPath `
+              -NextActionPath $nextActionPath `
+              -OutputPath $recoveryDigestPath `
+              -MarkdownOutputPath $recoveryDigestMarkdownPath
+            $digestSummary = if ($digestOutput) { $digestOutput | ConvertFrom-Json } else { $null }
+          } catch {
+            Write-Warning "Failed to summarize recovery digest: $($_.Exception.Message)"
+            $digestSummary = $null
+            if (-not (Test-Path $recoveryDigestPath)) {
+              @{ status = 'unavailable'; reason = $_.Exception.Message } | ConvertTo-Json | Set-Content -Path $recoveryDigestPath -Encoding utf8
+            }
+            if (-not (Test-Path $recoveryDigestMarkdownPath)) {
+              "# Recovery digest unavailable`n$($_.Exception.Message)" | Set-Content -Path $recoveryDigestMarkdownPath -Encoding utf8
+            }
+          }
+          $healthStatus = if ($collectSummary) { $collectSummary.health_status } else { 'unknown' }
+          $healthScore = if ($collectSummary) { [int]$collectSummary.health_score } else { 0 }
+          $needsAttention = if ($collectSummary) { [bool]$collectSummary.needs_attention } else { $true }
+          $healthReasons = if ($collectSummary -and $collectSummary.health_reasons) { $collectSummary.health_reasons -join ' | ' } else { '' }
+          $healthGate = if ($collectSummary -and $collectSummary.health_gate) { $collectSummary.health_gate } else { $null }
+          $healthGateBlocked = if ($healthGate) { [bool]$healthGate.blocked } else { $false }
+          $healthGateReasons = if ($healthGate -and $healthGate.reasons) { $healthGate.reasons -join ' | ' } else { '' }
+          $collectHealthGateEnabledAttention = if ($healthGate -and $healthGate.enabled) { $healthGate.enabled.fail_on_attention } else { $false }
+          $collectHealthGateEnabledCritical = if ($healthGate -and $healthGate.enabled) { $healthGate.enabled.fail_on_critical } else { $false }
+          $collectHealthGateEnabledMinScore = if ($healthGate -and $healthGate.enabled) { [int]$healthGate.enabled.min_health_score } else { 0 }
+
+          Write-Output "run_log_path=$runLogPath" >> $env:GITHUB_OUTPUT
+          Write-Output "run_log_summary_path=$runLogSummaryPath" >> $env:GITHUB_OUTPUT
+          Write-Output "release_gate_path=$releaseGatePath" >> $env:GITHUB_OUTPUT
+          Write-Output "run_status_path=$runStatusPath" >> $env:GITHUB_OUTPUT
+          Write-Output "next_action_path=$nextActionPath" >> $env:GITHUB_OUTPUT
+          Write-Output "next_action_collect_path=$collectPath" >> $env:GITHUB_OUTPUT
+          Write-Output "recommended_command=$nextCommand" >> $env:GITHUB_OUTPUT
+          Write-Output "recommended_step=$nextStep" >> $env:GITHUB_OUTPUT
+          Write-Output "recommended_reason=$nextReason" >> $env:GITHUB_OUTPUT
+          Write-Output "schema_valid=$schemaValid" >> $env:GITHUB_OUTPUT
+          Write-Output "schema_errors=$schemaErrors" >> $env:GITHUB_OUTPUT
+          Write-Output "recommended_commands_count=$recommendCount" >> $env:GITHUB_OUTPUT
+          Write-Output "health_status=$healthStatus" >> $env:GITHUB_OUTPUT
+          Write-Output "health_score=$healthScore" >> $env:GITHUB_OUTPUT
+          Write-Output "recovery_digest_path=$recoveryDigestPath" >> $env:GITHUB_OUTPUT
+          Write-Output "recovery_digest_markdown_path=$recoveryDigestMarkdownPath" >> $env:GITHUB_OUTPUT
+          Write-Output "needs_attention=$needsAttention" >> $env:GITHUB_OUTPUT
+          Write-Output "health_reasons=$healthReasons" >> $env:GITHUB_OUTPUT
+          Write-Output "health_gate_blocked=$healthGateBlocked" >> $env:GITHUB_OUTPUT
+          Write-Output "health_gate_reasons=$healthGateReasons" >> $env:GITHUB_OUTPUT
+          Write-Output "health_gate_enabled_fail_on_attention=$collectHealthGateEnabledAttention" >> $env:GITHUB_OUTPUT
+          Write-Output "health_gate_enabled_fail_on_critical=$collectHealthGateEnabledCritical" >> $env:GITHUB_OUTPUT
+          Write-Output "health_gate_enabled_min_health_score=$collectHealthGateEnabledMinScore" >> $env:GITHUB_OUTPUT
+          Write-Output "remediation_plan_path=$remediationPlanPath" >> $env:GITHUB_OUTPUT
+          Write-Output "remediation_plan_markdown_path=$remediationPlanMarkdownPath" >> $env:GITHUB_OUTPUT
+          Write-Output "remediation_plan_steps=$((($remediationSummary -and $remediationSummary.remediation_plan) ? $remediationSummary.remediation_plan.Count : 0))" >> $env:GITHUB_OUTPUT
+          Write-Output "remediation_validation_hint=$((($remediationSummary -and $remediationSummary.validation_hint) ? $remediationSummary.validation_hint : '') )" >> $env:GITHUB_OUTPUT
+          Write-Output "run_id_prefix=$safeRunIdPrefix" >> $env:GITHUB_OUTPUT
+          Write-Output "artifact_name=$artifactName" >> $env:GITHUB_OUTPUT
+
+      - name: Upload xinxin PR dry-run artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.run.outputs.artifact_name }}
+          path: |
+            ${{ steps.run.outputs.run_log_path }}
+            ${{ steps.run.outputs.run_log_summary_path }}
+            ${{ steps.run.outputs.release_gate_path }}
+            ${{ steps.run.outputs.run_status_path }}
+            ${{ steps.run.outputs.next_action_path }}
+            ${{ steps.run.outputs.next_action_collect_path }}
+            ${{ steps.run.outputs.remediation_plan_path }}
+            ${{ steps.run.outputs.remediation_plan_markdown_path }}
+            ${{ steps.run.outputs.recovery_digest_path }}
+            ${{ steps.run.outputs.recovery_digest_markdown_path }}
+          retention-days: 30
+
+      - name: Run xinxin release command center
+        if: always() && ((github.event_name == 'workflow_dispatch' && github.event.inputs.run_command_center == 'true') || vars.XINXIN_PR_DRY_RUN_RUN_COMMAND_CENTER == 'true')
+        id: command_center
+        shell: pwsh
+        continue-on-error: true
+        run: |
+          $runIdPrefix = "${{ steps.run.outputs.run_id_prefix }}"
+          & .\scripts\run-xinxin-release-command-center.ps1 `
+            -RunIdPrefix $runIdPrefix `
+            -RunDir ".\xinxin-run" `
+            -RunId "${{ github.run_id }}" `
+            -OnlyPhases all `
+            -NoBoardOnFail `
+            -ReportFormat both `
+            -EmitGithubOutputs
+
+      - name: Upload command-center diagnostics
+        if: always() && ((github.event_name == 'workflow_dispatch' && github.event.inputs.run_command_center == 'true') || vars.XINXIN_PR_DRY_RUN_RUN_COMMAND_CENTER == 'true')
+        uses: actions/upload-artifact@v4
+        with:
+          name: xinxin-v2.1-command-center-${{ github.run_id }}
+          path: |
+            ${{ steps.command_center.outputs.command_center_summary }}
+            ${{ steps.command_center.outputs.command_center_summary_markdown }}
+            ${{ steps.command_center.outputs.command_center_cycle_root }}
+            ${{ steps.command_center.outputs.release_cycle_board_json }}
+            ${{ steps.command_center.outputs.release_cycle_board_markdown }}
+          if-no-files-found: ignore
+          retention-days: 30
+
+      - name: Resolve next-step recommendation
+        if: always()
+        id: next
+        shell: pwsh
+        run: |
+          $runIdPrefix = "${{ steps.run.outputs.run_id_prefix }}"
+          $releaseGatePath = "${{ steps.run.outputs.release_gate_path }}"
+          $runStatusPath = "${{ steps.run.outputs.run_status_path }}"
+          $nextActionPath = "${{ steps.run.outputs.next_action_path }}"
+          $next = & .\scripts\resolve-xinxin-next-action.ps1 -ReleaseGatePath $releaseGatePath -RunStatusPath $runStatusPath -RunIdPrefix $runIdPrefix -MarkdownOutputPath $nextActionPath
+          if ($next) {
+            $nextJson = $next | ConvertFrom-Json
+            Write-Output "recommended_command=$($nextJson.recommended_command)" >> $env:GITHUB_OUTPUT
+            Write-Output "recommended_step=$($nextJson.recommended_step)" >> $env:GITHUB_OUTPUT
+            Write-Output "recommended_reason=$($nextJson.reason)" >> $env:GITHUB_OUTPUT
+            Write-Output "schema_valid=$($nextJson.schema_validation.valid)" >> $env:GITHUB_OUTPUT
+            Write-Output "schema_errors=$($nextJson.schema_validation.errors.Count)" >> $env:GITHUB_OUTPUT
+            Write-Output "recommended_commands_count=$($nextJson.recommended_commands.Count)" >> $env:GITHUB_OUTPUT
+          } else {
+            Write-Output "recommended_command=" >> $env:GITHUB_OUTPUT
+            Write-Output "recommended_step=unknown" >> $env:GITHUB_OUTPUT
+            Write-Output "recommended_reason=next-action resolution missing" >> $env:GITHUB_OUTPUT
+            Write-Output "schema_valid=false" >> $env:GITHUB_OUTPUT
+            Write-Output "schema_errors=1" >> $env:GITHUB_OUTPUT
+            Write-Output "recommended_commands_count=0" >> $env:GITHUB_OUTPUT
+          }
+          if (( '${{ github.event_name }}' -eq 'workflow_dispatch' -and '${{ github.event.inputs.run_command_center }}' -eq 'true') -or '${{ vars.XINXIN_PR_DRY_RUN_RUN_COMMAND_CENTER }}' -eq 'true') {
+            Write-Output "command_center_summary=${{ steps.command_center.outputs.command_center_summary }}" >> $env:GITHUB_OUTPUT
+            Write-Output "command_center_summary_markdown=${{ steps.command_center.outputs.command_center_summary_markdown }}" >> $env:GITHUB_OUTPUT
+            Write-Output "command_center_cycle_root=${{ steps.command_center.outputs.command_center_cycle_root }}" >> $env:GITHUB_OUTPUT
+            Write-Output "cycle_report=${{ steps.command_center.outputs.cycle_report }}" >> $env:GITHUB_OUTPUT
+            Write-Output "cycle_pass=${{ steps.command_center.outputs.cycle_pass }}" >> $env:GITHUB_OUTPUT
+            Write-Output "command_center_pass=${{ steps.command_center.outputs.command_center_pass }}" >> $env:GITHUB_OUTPUT
+            Write-Output "command_center_exit_code=${{ steps.command_center.outputs.command_center_exit_code }}" >> $env:GITHUB_OUTPUT
+            Write-Output "release_cycle_board_json=${{ steps.command_center.outputs.release_cycle_board_json }}" >> $env:GITHUB_OUTPUT
+            Write-Output "release_cycle_board_markdown=${{ steps.command_center.outputs.release_cycle_board_markdown }}" >> $env:GITHUB_OUTPUT
+          } else {
+            Write-Output "command_center_summary=" >> $env:GITHUB_OUTPUT
+            Write-Output "command_center_summary_markdown=" >> $env:GITHUB_OUTPUT
+            Write-Output "command_center_cycle_root=" >> $env:GITHUB_OUTPUT
+            Write-Output "cycle_report=" >> $env:GITHUB_OUTPUT
+            Write-Output "cycle_pass=" >> $env:GITHUB_OUTPUT
+            Write-Output "command_center_pass=" >> $env:GITHUB_OUTPUT
+            Write-Output "command_center_exit_code=" >> $env:GITHUB_OUTPUT
+            Write-Output "release_cycle_board_json=" >> $env:GITHUB_OUTPUT
+            Write-Output "release_cycle_board_markdown=" >> $env:GITHUB_OUTPUT
+          }

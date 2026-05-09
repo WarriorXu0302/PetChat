@@ -1,0 +1,10 @@
+{
+  "ok": true,
+  "run_dir": "D:\\pet\\xinxin-run",
+  "spritesheet": "D:\\pet\\xinxin-run\\final\\spritesheet.webp",
+  "validation": "D:\\pet\\xinxin-run\\final\\validation.json",
+  "contact_sheet": "D:\\pet\\xinxin-run\\qa\\contact-sheet.png",
+  "review": "D:\\pet\\xinxin-run\\qa\\review.json",
+  "videos": "D:\\pet\\xinxin-run\\qa\\videos",
+  "package": "C:\\Users\\Xx7\\.codex\\pets\\xinxin"
+}

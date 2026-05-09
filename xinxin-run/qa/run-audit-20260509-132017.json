@@ -1,0 +1,507 @@
+﻿{
+    "generated_at":  "2026-05-09T05:20:17.6897236Z",
+    "run_dir":  "D:\\pet\\xinxin-run",
+    "pet_id":  "xinxin",
+    "status":  {
+                   "generated_at":  "2026-05-09T05:20:17.4988202Z",
+                   "run_dir":  "D:\\pet\\xinxin-run",
+                   "pet_id":  "xinxin",
+                   "state":  "healthy",
+                   "checks":  {
+                                  "directories":  {
+                                                      "decoded":  true,
+                                                      "frames":  true,
+                                                      "final":  true,
+                                                      "qa":  true,
+                                                      "references":  true,
+                                                      "prompts":  true
+                                                  },
+                                  "assets":  {
+                                                 "pet_request.json":  true,
+                                                 "imagegen-jobs.json":  true,
+                                                 "prompts\\base-pet.md":  true,
+                                                 "canonical_identity_ref":  true
+                                             },
+                                  "frames":  [
+                                                 {
+                                                     "state":  "failed",
+                                                     "expected_frames":  8,
+                                                     "actual_frames":  8,
+                                                     "state_dir_exists":  true,
+                                                     "sample_files":  [
+                                                                          "00.png",
+                                                                          "01.png",
+                                                                          "02.png"
+                                                                      ],
+                                                     "status":  "ok"
+                                                 },
+                                                 {
+                                                     "state":  "idle",
+                                                     "expected_frames":  6,
+                                                     "actual_frames":  6,
+                                                     "state_dir_exists":  true,
+                                                     "sample_files":  [
+                                                                          "00.png",
+                                                                          "01.png",
+                                                                          "02.png"
+                                                                      ],
+                                                     "status":  "ok"
+                                                 },
+                                                 {
+                                                     "state":  "jumping",
+                                                     "expected_frames":  5,
+                                                     "actual_frames":  5,
+                                                     "state_dir_exists":  true,
+                                                     "sample_files":  [
+                                                                          "00.png",
+                                                                          "01.png",
+                                                                          "02.png"
+                                                                      ],
+                                                     "status":  "ok"
+                                                 },
+                                                 {
+                                                     "state":  "review",
+                                                     "expected_frames":  6,
+                                                     "actual_frames":  6,
+                                                     "state_dir_exists":  true,
+                                                     "sample_files":  [
+                                                                          "00.png",
+                                                                          "01.png",
+                                                                          "02.png"
+                                                                      ],
+                                                     "status":  "ok"
+                                                 },
+                                                 {
+                                                     "state":  "running",
+                                                     "expected_frames":  6,
+                                                     "actual_frames":  6,
+                                                     "state_dir_exists":  true,
+                                                     "sample_files":  [
+                                                                          "00.png",
+                                                                          "01.png",
+                                                                          "02.png"
+                                                                      ],
+                                                     "status":  "ok"
+                                                 },
+                                                 {
+                                                     "state":  "running-left",
+                                                     "expected_frames":  8,
+                                                     "actual_frames":  8,
+                                                     "state_dir_exists":  true,
+                                                     "sample_files":  [
+                                                                          "00.png",
+                                                                          "01.png",
+                                                                          "02.png"
+                                                                      ],
+                                                     "status":  "ok"
+                                                 },
+                                                 {
+                                                     "state":  "running-right",
+                                                     "expected_frames":  8,
+                                                     "actual_frames":  8,
+                                                     "state_dir_exists":  true,
+                                                     "sample_files":  [
+                                                                          "00.png",
+                                                                          "01.png",
+                                                                          "02.png"
+                                                                      ],
+                                                     "status":  "ok"
+                                                 },
+                                                 {
+                                                     "state":  "waiting",
+                                                     "expected_frames":  6,
+                                                     "actual_frames":  6,
+                                                     "state_dir_exists":  true,
+                                                     "sample_files":  [
+                                                                          "00.png",
+                                                                          "01.png",
+                                                                          "02.png"
+                                                                      ],
+                                                     "status":  "ok"
+                                                 },
+                                                 {
+                                                     "state":  "waving",
+                                                     "expected_frames":  4,
+                                                     "actual_frames":  4,
+                                                     "state_dir_exists":  true,
+                                                     "sample_files":  [
+                                                                          "00.png",
+                                                                          "01.png",
+                                                                          "02.png"
+                                                                      ],
+                                                     "status":  "ok"
+                                                 }
+                                             ],
+                                  "required_frame_dirs":  [
+                                                              "failed",
+                                                              "idle",
+                                                              "jumping",
+                                                              "review",
+                                                              "running",
+                                                              "running-left",
+                                                              "running-right",
+                                                              "waiting",
+                                                              "waving"
+                                                          ],
+                                  "extras":  [
+                                                 {
+                                                     "name":  "status",
+                                                     "path":  "D:\\pet\\xinxin-run\\qa\\run-status.json",
+                                                     "exists":  true,
+                                                     "file_count":  1
+                                                 }
+                                             ],
+                                  "run_layout":  [
+                                                     "waiting",
+                                                     "jumping",
+                                                     "review",
+                                                     "running",
+                                                     "idle",
+                                                     "running-right",
+                                                     "running-left",
+                                                     "waving",
+                                                     "failed"
+                                                 ]
+                              },
+                   "issues":  [
+
+                              ],
+                   "warnings":  [
+
+                                ],
+                   "jobs":  {
+                                "total":  10,
+                                "complete":  10,
+                                "pending":  0,
+                                "failed":  0,
+                                "paused":  0
+                            },
+                   "summary":  {
+                                   "all_directories_exist":  true,
+                                   "canonical_reference_available":  true,
+                                   "frame_states_complete":  true,
+                                   "no_missing_assets":  true,
+                                   "expected_frames":  57,
+                                   "actual_frames":  57,
+                                   "expected_states":  9,
+                                   "frame_completion_ratio":  100,
+                                   "jobs_completion_ratio":  100,
+                                   "readiness_score":  100
+                               },
+                   "gate":  {
+                                "ready_for_generation":  true,
+                                "reasons":  [
+
+                                            ]
+                            }
+               },
+    "checks":  [
+                   {
+                       "name":  "pipeline_health",
+                       "status":  "PASS",
+                       "message":  "Pipeline state is healthy.",
+                       "severity":  "high"
+                   },
+                   {
+                       "name":  "issues_blocking",
+                       "status":  "PASS",
+                       "message":  "Issues: 0",
+                       "severity":  "high"
+                   },
+                   {
+                       "name":  "warnings_present",
+                       "status":  "PASS",
+                       "message":  "Warnings: 0",
+                       "severity":  "medium"
+                   },
+                   {
+                       "name":  "frame_completion_ratio",
+                       "status":  "PASS",
+                       "message":  "Frame completion ratio is 100%.",
+                       "severity":  "high"
+                   },
+                   {
+                       "name":  "job_completion_ratio",
+                       "status":  "PASS",
+                       "message":  "Job completion ratio is 100%.",
+                       "severity":  "high"
+                   },
+                   {
+                       "name":  "required_artifacts",
+                       "status":  "PASS",
+                       "message":  "Required files ready: 12/12.",
+                       "severity":  "high"
+                   },
+                   {
+                       "name":  "validation_file",
+                       "status":  "PASS",
+                       "message":  "Validation file exists: True.",
+                       "severity":  "high"
+                   },
+                   {
+                       "name":  "state_matrix",
+                       "status":  "PASS",
+                       "message":  "State pass count: 9/9.",
+                       "severity":  "high"
+                   },
+                   {
+                       "name":  "validation_state_slots",
+                       "status":  "PASS",
+                       "message":  "Validation state slots pass: 9/9.",
+                       "severity":  "high"
+                   },
+                   {
+                       "name":  "validation_zero_content_frames",
+                       "status":  "PASS",
+                       "message":  "Used frames with zero nontransparent pixels: 0.",
+                       "severity":  "medium"
+                   },
+                   {
+                       "name":  "validation_unknown_state_frames",
+                       "status":  "PASS",
+                       "message":  "Used cells in unknown states: 0.",
+                       "severity":  "medium"
+                   },
+                   {
+                       "name":  "validation_dimensions",
+                       "status":  "PASS",
+                       "message":  "Validation vs atlas: 1536x1872 vs 1536x1872.",
+                       "severity":  "high"
+                   },
+                   {
+                       "name":  "required_artifact_matrix",
+                       "status":  "PASS",
+                       "message":  "Required artifact pass count: 12/12.",
+                       "severity":  "high"
+                   }
+               ],
+    "state_matrix":  [
+                         {
+                             "state":  "running-right",
+                             "status":  "PASS",
+                             "expected_frames":  8,
+                             "actual_frames":  8,
+                             "message":  "ok"
+                         },
+                         {
+                             "state":  "running-left",
+                             "status":  "PASS",
+                             "expected_frames":  8,
+                             "actual_frames":  8,
+                             "message":  "ok"
+                         },
+                         {
+                             "state":  "waving",
+                             "status":  "PASS",
+                             "expected_frames":  4,
+                             "actual_frames":  4,
+                             "message":  "ok"
+                         },
+                         {
+                             "state":  "waiting",
+                             "status":  "PASS",
+                             "expected_frames":  6,
+                             "actual_frames":  6,
+                             "message":  "ok"
+                         },
+                         {
+                             "state":  "running",
+                             "status":  "PASS",
+                             "expected_frames":  6,
+                             "actual_frames":  6,
+                             "message":  "ok"
+                         },
+                         {
+                             "state":  "idle",
+                             "status":  "PASS",
+                             "expected_frames":  6,
+                             "actual_frames":  6,
+                             "message":  "ok"
+                         },
+                         {
+                             "state":  "failed",
+                             "status":  "PASS",
+                             "expected_frames":  8,
+                             "actual_frames":  8,
+                             "message":  "ok"
+                         },
+                         {
+                             "state":  "review",
+                             "status":  "PASS",
+                             "expected_frames":  6,
+                             "actual_frames":  6,
+                             "message":  "ok"
+                         },
+                         {
+                             "state":  "jumping",
+                             "status":  "PASS",
+                             "expected_frames":  5,
+                             "actual_frames":  5,
+                             "message":  "ok"
+                         }
+                     ],
+    "validation_matrix":  [
+                              {
+                                  "state":  "failed",
+                                  "status":  "PASS",
+                                  "expected_frames":  8,
+                                  "actual_frames":  8,
+                                  "message":  "Validation used cells"
+                              },
+                              {
+                                  "state":  "idle",
+                                  "status":  "PASS",
+                                  "expected_frames":  6,
+                                  "actual_frames":  6,
+                                  "message":  "Validation used cells"
+                              },
+                              {
+                                  "state":  "jumping",
+                                  "status":  "PASS",
+                                  "expected_frames":  5,
+                                  "actual_frames":  5,
+                                  "message":  "Validation used cells"
+                              },
+                              {
+                                  "state":  "review",
+                                  "status":  "PASS",
+                                  "expected_frames":  6,
+                                  "actual_frames":  6,
+                                  "message":  "Validation used cells"
+                              },
+                              {
+                                  "state":  "running",
+                                  "status":  "PASS",
+                                  "expected_frames":  6,
+                                  "actual_frames":  6,
+                                  "message":  "Validation used cells"
+                              },
+                              {
+                                  "state":  "running-left",
+                                  "status":  "PASS",
+                                  "expected_frames":  8,
+                                  "actual_frames":  8,
+                                  "message":  "Validation used cells"
+                              },
+                              {
+                                  "state":  "running-right",
+                                  "status":  "PASS",
+                                  "expected_frames":  8,
+                                  "actual_frames":  8,
+                                  "message":  "Validation used cells"
+                              },
+                              {
+                                  "state":  "waiting",
+                                  "status":  "PASS",
+                                  "expected_frames":  6,
+                                  "actual_frames":  6,
+                                  "message":  "Validation used cells"
+                              },
+                              {
+                                  "state":  "waving",
+                                  "status":  "PASS",
+                                  "expected_frames":  4,
+                                  "actual_frames":  4,
+                                  "message":  "Validation used cells"
+                              }
+                          ],
+    "required_artifact_matrix":  [
+                                     {
+                                         "name":  "spritesheet.png",
+                                         "status":  "PASS",
+                                         "path":  "D:\\pet\\xinxin-run\\final\\spritesheet.png",
+                                         "exists":  true,
+                                         "size_bytes":  2546006
+                                     },
+                                     {
+                                         "name":  "spritesheet.webp",
+                                         "status":  "PASS",
+                                         "path":  "D:\\pet\\xinxin-run\\final\\spritesheet.webp",
+                                         "exists":  true,
+                                         "size_bytes":  1914548
+                                     },
+                                     {
+                                         "name":  "validation.json",
+                                         "status":  "PASS",
+                                         "path":  "D:\\pet\\xinxin-run\\final\\validation.json",
+                                         "exists":  true,
+                                         "size_bytes":  10142
+                                     },
+                                     {
+                                         "name":  "idle.png",
+                                         "status":  "PASS",
+                                         "path":  "D:\\pet\\xinxin-run\\final\\idle.png",
+                                         "exists":  true,
+                                         "size_bytes":  1677918
+                                     },
+                                     {
+                                         "name":  "running-right.png",
+                                         "status":  "PASS",
+                                         "path":  "D:\\pet\\xinxin-run\\final\\running-right.png",
+                                         "exists":  true,
+                                         "size_bytes":  1506063
+                                     },
+                                     {
+                                         "name":  "running-left.png",
+                                         "status":  "PASS",
+                                         "path":  "D:\\pet\\xinxin-run\\final\\running-left.png",
+                                         "exists":  true,
+                                         "size_bytes":  1527817
+                                     },
+                                     {
+                                         "name":  "waving.png",
+                                         "status":  "PASS",
+                                         "path":  "D:\\pet\\xinxin-run\\final\\waving.png",
+                                         "exists":  true,
+                                         "size_bytes":  1514179
+                                     },
+                                     {
+                                         "name":  "jumping.png",
+                                         "status":  "PASS",
+                                         "path":  "D:\\pet\\xinxin-run\\final\\jumping.png",
+                                         "exists":  true,
+                                         "size_bytes":  1565525
+                                     },
+                                     {
+                                         "name":  "failed.png",
+                                         "status":  "PASS",
+                                         "path":  "D:\\pet\\xinxin-run\\final\\failed.png",
+                                         "exists":  true,
+                                         "size_bytes":  1712769
+                                     },
+                                     {
+                                         "name":  "waiting.png",
+                                         "status":  "PASS",
+                                         "path":  "D:\\pet\\xinxin-run\\final\\waiting.png",
+                                         "exists":  true,
+                                         "size_bytes":  1642021
+                                     },
+                                     {
+                                         "name":  "running.png",
+                                         "status":  "PASS",
+                                         "path":  "D:\\pet\\xinxin-run\\final\\running.png",
+                                         "exists":  true,
+                                         "size_bytes":  1710186
+                                     },
+                                     {
+                                         "name":  "review.png",
+                                         "status":  "PASS",
+                                         "path":  "D:\\pet\\xinxin-run\\final\\review.png",
+                                         "exists":  true,
+                                         "size_bytes":  1640613
+                                     }
+                                 ],
+    "manual_review":  {
+                          "status":  "PENDING",
+                          "contact_sheet":  true,
+                          "review_sheet":  true,
+                          "notes":  "Manual visual and identity consistency review is still required for IP freeze."
+                      },
+    "summary":  {
+                    "overall":  "PASS",
+                    "total_checks":  13,
+                    "pass_checks":  13,
+                    "warn_checks":  0,
+                    "fail_checks":  0
+                }
+}

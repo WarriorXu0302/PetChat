@@ -1,0 +1,40 @@
+﻿{
+  "generated_at":  "2026-05-09T05:00:22.4584961Z",
+  "root":  "D:\\pet",
+  "run_scope":  "xinxin-only",
+  "runs":  [
+    {
+      "run_dir":  "D:\\pet\\xinxin-run",
+      "pet_id":  "xinxin",
+      "state":  "healthy",
+      "readiness_score":  100,
+      "frame_completion_ratio":  100,
+      "jobs_completion_ratio":  100,
+      "issues":  0,
+      "warnings":  0,
+      "jobs":  {
+        "total":  10,
+        "complete":  10,
+        "pending":  0,
+        "failed":  0,
+        "paused":  0
+      },
+      "summary":  {
+        "all_directories_exist":  true,
+        "canonical_reference_available":  true,
+        "frame_states_complete":  true,
+        "no_missing_assets":  true,
+        "expected_frames":  57,
+        "actual_frames":  57,
+        "expected_states":  9,
+        "frame_completion_ratio":  100,
+        "jobs_completion_ratio":  100,
+        "readiness_score":  100
+      },
+      "gate":  {
+        "ready_for_generation":  true,
+        "reasons":  []
+      }
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+.env
+*.sqlite
+*.sqlite-journal
+.DS_Store
+
+# companion runtime artifacts (regenerated locally)
+companion/personas/
+companion/runtime/

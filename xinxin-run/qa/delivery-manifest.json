@@ -1,0 +1,246 @@
+﻿{
+    "generated_at":  "2026-05-09T05:21:14.8731402Z",
+    "run_dir":  "D:\\pet\\xinxin-run",
+    "pet_id":  "xinxin",
+    "state":  "healthy",
+    "gate":  {
+                 "ready_for_generation":  true,
+                 "reasons":  [
+
+                             ]
+             },
+    "status":  {
+                   "summary":  {
+                                   "all_directories_exist":  true,
+                                   "canonical_reference_available":  true,
+                                   "frame_states_complete":  true,
+                                   "no_missing_assets":  true,
+                                   "expected_frames":  57,
+                                   "actual_frames":  57,
+                                   "expected_states":  9,
+                                   "frame_completion_ratio":  100,
+                                   "jobs_completion_ratio":  100,
+                                   "readiness_score":  100
+                               },
+                   "issues":  [
+
+                              ],
+                   "warnings":  [
+
+                                ],
+                   "jobs":  {
+                                "total":  10,
+                                "complete":  10,
+                                "pending":  0,
+                                "failed":  0,
+                                "paused":  0
+                            }
+               },
+    "artifacts":  [
+                      {
+                          "name":  "spritesheet.png",
+                          "path":  "D:\\pet\\xinxin-run\\final\\spritesheet.png",
+                          "required":  true,
+                          "exists":  true,
+                          "size_bytes":  2546006,
+                          "sha256":  "A713553371A8F388CD14E545C2BC87C14CB73D4651141EB819CCCE50274BE13C",
+                          "last_write_time_utc":  "2026-05-09T03:43:38.1026713Z",
+                          "extension":  ".png"
+                      },
+                      {
+                          "name":  "spritesheet.webp",
+                          "path":  "D:\\pet\\xinxin-run\\final\\spritesheet.webp",
+                          "required":  true,
+                          "exists":  true,
+                          "size_bytes":  1914548,
+                          "sha256":  "0956188DE6D9F1F42E29ABF90E0D72F341CEB1550E65D7BA7AED6EF9E8C1C249",
+                          "last_write_time_utc":  "2026-05-09T03:43:45.4277412Z",
+                          "extension":  ".webp"
+                      },
+                      {
+                          "name":  "validation.json",
+                          "path":  "D:\\pet\\xinxin-run\\final\\validation.json",
+                          "required":  true,
+                          "exists":  true,
+                          "size_bytes":  10142,
+                          "sha256":  "840FF8DA53FABC31B2516497BEFAB0B95C2C42E6984EB3201FDFD42E1BF30D63",
+                          "last_write_time_utc":  "2026-05-09T03:43:46.0223564Z",
+                          "extension":  ".json"
+                      },
+                      {
+                          "name":  "idle.png",
+                          "path":  "D:\\pet\\xinxin-run\\final\\idle.png",
+                          "required":  true,
+                          "exists":  true,
+                          "size_bytes":  1677918,
+                          "sha256":  "E152D6EC91C8EE2219BFE838023CFDF38615FBA7219DB146C6A75285E1521916",
+                          "last_write_time_utc":  "2026-05-09T02:50:47.6920150Z",
+                          "extension":  ".png"
+                      },
+                      {
+                          "name":  "running-right.png",
+                          "path":  "D:\\pet\\xinxin-run\\final\\running-right.png",
+                          "required":  true,
+                          "exists":  true,
+                          "size_bytes":  1506063,
+                          "sha256":  "F1DDAE0E21BD8B2EC0905BE6922FC78DB8EDDD9B919ACCDB3FE4679F5A7A3502",
+                          "last_write_time_utc":  "2026-05-09T02:53:38.7410321Z",
+                          "extension":  ".png"
+                      },
+                      {
+                          "name":  "running-left.png",
+                          "path":  "D:\\pet\\xinxin-run\\final\\running-left.png",
+                          "required":  true,
+                          "exists":  true,
+                          "size_bytes":  1527817,
+                          "sha256":  "D9744790AC00FDA56D3F182732AF83F3036D59B0BABE10DE2108D055ED336BF2",
+                          "last_write_time_utc":  "2026-05-09T03:00:38.6851865Z",
+                          "extension":  ".png"
+                      },
+                      {
+                          "name":  "waving.png",
+                          "path":  "D:\\pet\\xinxin-run\\final\\waving.png",
+                          "required":  true,
+                          "exists":  true,
+                          "size_bytes":  1514179,
+                          "sha256":  "BE381450412C4F648756A4B1F1F355E713495C59BC9DD4C180D36B795F9530E7",
+                          "last_write_time_utc":  "2026-05-09T03:05:05.0910246Z",
+                          "extension":  ".png"
+                      },
+                      {
+                          "name":  "jumping.png",
+                          "path":  "D:\\pet\\xinxin-run\\final\\jumping.png",
+                          "required":  true,
+                          "exists":  true,
+                          "size_bytes":  1565525,
+                          "sha256":  "68D6AA4627AD970C21F5D84524254890768544FC710DE7907419092DA56D1704",
+                          "last_write_time_utc":  "2026-05-09T03:10:07.2832153Z",
+                          "extension":  ".png"
+                      },
+                      {
+                          "name":  "failed.png",
+                          "path":  "D:\\pet\\xinxin-run\\final\\failed.png",
+                          "required":  true,
+                          "exists":  true,
+                          "size_bytes":  1712769,
+                          "sha256":  "4EF86CF629870E19B64E9C15D6F7418CA682B5B972376211760E1690897CFEAF",
+                          "last_write_time_utc":  "2026-05-09T03:38:10.3347550Z",
+                          "extension":  ".png"
+                      },
+                      {
+                          "name":  "waiting.png",
+                          "path":  "D:\\pet\\xinxin-run\\final\\waiting.png",
+                          "required":  true,
+                          "exists":  true,
+                          "size_bytes":  1642021,
+                          "sha256":  "8B45C08F8481E84EDA4E93EDAC7139BAA0ED4BFD0B31AAC00918E76446573D4A",
+                          "last_write_time_utc":  "2026-05-09T03:15:49.3241252Z",
+                          "extension":  ".png"
+                      },
+                      {
+                          "name":  "running.png",
+                          "path":  "D:\\pet\\xinxin-run\\final\\running.png",
+                          "required":  true,
+                          "exists":  true,
+                          "size_bytes":  1710186,
+                          "sha256":  "E27EC4A6CAA5E605C52421EFE95DD1BED81F240D758BCFC4C6CFD42A57A11733",
+                          "last_write_time_utc":  "2026-05-09T03:23:20.2943587Z",
+                          "extension":  ".png"
+                      },
+                      {
+                          "name":  "review.png",
+                          "path":  "D:\\pet\\xinxin-run\\final\\review.png",
+                          "required":  true,
+                          "exists":  true,
+                          "size_bytes":  1640613,
+                          "sha256":  "70DDB7777450E7B2D736E179983202FDF65C1753EBC3A371419AED9552837A8E",
+                          "last_write_time_utc":  "2026-05-09T03:30:17.5205619Z",
+                          "extension":  ".png"
+                      },
+                      {
+                          "name":  "contact-sheet.png",
+                          "path":  "D:\\pet\\xinxin-run\\qa\\contact-sheet.png",
+                          "required":  false,
+                          "exists":  true,
+                          "size_bytes":  677620,
+                          "sha256":  "B51C8BC9BEAA865DFAC51005E09C812E695D77CB1CD7D4F043F5B483F0BB0C04",
+                          "last_write_time_utc":  "2026-05-09T03:43:46.7294921Z",
+                          "extension":  ".png"
+                      },
+                      {
+                          "name":  "review.json",
+                          "path":  "D:\\pet\\xinxin-run\\qa\\review.json",
+                          "required":  false,
+                          "exists":  true,
+                          "size_bytes":  23904,
+                          "sha256":  "32AB21DDA55E3FB0FE28F1CEB7A6FBF7E9377F8AA08B3425E2485361CA2229FD",
+                          "last_write_time_utc":  "2026-05-09T03:43:37.5200043Z",
+                          "extension":  ".json"
+                      },
+                      {
+                          "name":  "run-status.json",
+                          "path":  "D:\\pet\\xinxin-run\\qa\\run-status.json",
+                          "required":  false,
+                          "exists":  true,
+                          "size_bytes":  9865,
+                          "sha256":  "845721F61150B090DC70A6D71A2A2188068BBBE78FFDB7887537D9E3A2A62F46",
+                          "last_write_time_utc":  "2026-05-09T05:21:14.8615247Z",
+                          "extension":  ".json"
+                      }
+                  ],
+    "checks":  {
+                   "present_required_files":  12,
+                   "package_readiness":  100,
+                   "missing_required_files":  0,
+                   "present_files":  15,
+                   "total_files":  15,
+                   "required_files":  12
+               },
+    "layout_guides":  [
+                          {
+                              "path":  "references\\layout-guides\\idle.png",
+                              "frames":  6,
+                              "state":  "idle"
+                          },
+                          {
+                              "path":  "references\\layout-guides\\running-right.png",
+                              "frames":  8,
+                              "state":  "running-right"
+                          },
+                          {
+                              "path":  "references\\layout-guides\\running-left.png",
+                              "frames":  8,
+                              "state":  "running-left"
+                          },
+                          {
+                              "path":  "references\\layout-guides\\waving.png",
+                              "frames":  4,
+                              "state":  "waving"
+                          },
+                          {
+                              "path":  "references\\layout-guides\\jumping.png",
+                              "frames":  5,
+                              "state":  "jumping"
+                          },
+                          {
+                              "path":  "references\\layout-guides\\failed.png",
+                              "frames":  8,
+                              "state":  "failed"
+                          },
+                          {
+                              "path":  "references\\layout-guides\\waiting.png",
+                              "frames":  6,
+                              "state":  "waiting"
+                          },
+                          {
+                              "path":  "references\\layout-guides\\running.png",
+                              "frames":  6,
+                              "state":  "running"
+                          },
+                          {
+                              "path":  "references\\layout-guides\\review.png",
+                              "frames":  6,
+                              "state":  "review"
+                          }
+                      ]
+}

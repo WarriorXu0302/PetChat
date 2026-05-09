@@ -1,0 +1,193 @@
+﻿{
+    "generated_at":  "2026-05-09T05:21:15.1341670Z",
+    "run_dir":  "D:\\pet\\xinxin-run",
+    "pet_id":  "xinxin",
+    "state":  "healthy",
+    "checks":  {
+                   "directories":  {
+                                       "decoded":  true,
+                                       "frames":  true,
+                                       "final":  true,
+                                       "qa":  true,
+                                       "references":  true,
+                                       "prompts":  true
+                                   },
+                   "assets":  {
+                                  "pet_request.json":  true,
+                                  "imagegen-jobs.json":  true,
+                                  "prompts\\base-pet.md":  true,
+                                  "canonical_identity_ref":  true
+                              },
+                   "frames":  [
+                                  {
+                                      "state":  "failed",
+                                      "expected_frames":  8,
+                                      "actual_frames":  8,
+                                      "state_dir_exists":  true,
+                                      "sample_files":  [
+                                                           "00.png",
+                                                           "01.png",
+                                                           "02.png"
+                                                       ],
+                                      "status":  "ok"
+                                  },
+                                  {
+                                      "state":  "idle",
+                                      "expected_frames":  6,
+                                      "actual_frames":  6,
+                                      "state_dir_exists":  true,
+                                      "sample_files":  [
+                                                           "00.png",
+                                                           "01.png",
+                                                           "02.png"
+                                                       ],
+                                      "status":  "ok"
+                                  },
+                                  {
+                                      "state":  "jumping",
+                                      "expected_frames":  5,
+                                      "actual_frames":  5,
+                                      "state_dir_exists":  true,
+                                      "sample_files":  [
+                                                           "00.png",
+                                                           "01.png",
+                                                           "02.png"
+                                                       ],
+                                      "status":  "ok"
+                                  },
+                                  {
+                                      "state":  "review",
+                                      "expected_frames":  6,
+                                      "actual_frames":  6,
+                                      "state_dir_exists":  true,
+                                      "sample_files":  [
+                                                           "00.png",
+                                                           "01.png",
+                                                           "02.png"
+                                                       ],
+                                      "status":  "ok"
+                                  },
+                                  {
+                                      "state":  "running",
+                                      "expected_frames":  6,
+                                      "actual_frames":  6,
+                                      "state_dir_exists":  true,
+                                      "sample_files":  [
+                                                           "00.png",
+                                                           "01.png",
+                                                           "02.png"
+                                                       ],
+                                      "status":  "ok"
+                                  },
+                                  {
+                                      "state":  "running-left",
+                                      "expected_frames":  8,
+                                      "actual_frames":  8,
+                                      "state_dir_exists":  true,
+                                      "sample_files":  [
+                                                           "00.png",
+                                                           "01.png",
+                                                           "02.png"
+                                                       ],
+                                      "status":  "ok"
+                                  },
+                                  {
+                                      "state":  "running-right",
+                                      "expected_frames":  8,
+                                      "actual_frames":  8,
+                                      "state_dir_exists":  true,
+                                      "sample_files":  [
+                                                           "00.png",
+                                                           "01.png",
+                                                           "02.png"
+                                                       ],
+                                      "status":  "ok"
+                                  },
+                                  {
+                                      "state":  "waiting",
+                                      "expected_frames":  6,
+                                      "actual_frames":  6,
+                                      "state_dir_exists":  true,
+                                      "sample_files":  [
+                                                           "00.png",
+                                                           "01.png",
+                                                           "02.png"
+                                                       ],
+                                      "status":  "ok"
+                                  },
+                                  {
+                                      "state":  "waving",
+                                      "expected_frames":  4,
+                                      "actual_frames":  4,
+                                      "state_dir_exists":  true,
+                                      "sample_files":  [
+                                                           "00.png",
+                                                           "01.png",
+                                                           "02.png"
+                                                       ],
+                                      "status":  "ok"
+                                  }
+                              ],
+                   "required_frame_dirs":  [
+                                               "failed",
+                                               "idle",
+                                               "jumping",
+                                               "review",
+                                               "running",
+                                               "running-left",
+                                               "running-right",
+                                               "waiting",
+                                               "waving"
+                                           ],
+                   "extras":  [
+                                  {
+                                      "name":  "status",
+                                      "path":  "D:\\pet\\xinxin-run\\qa\\run-status.json",
+                                      "exists":  true,
+                                      "file_count":  1
+                                  }
+                              ],
+                   "run_layout":  [
+                                      "waiting",
+                                      "jumping",
+                                      "review",
+                                      "running",
+                                      "idle",
+                                      "running-right",
+                                      "running-left",
+                                      "waving",
+                                      "failed"
+                                  ]
+               },
+    "issues":  [
+
+               ],
+    "warnings":  [
+
+                 ],
+    "jobs":  {
+                 "total":  10,
+                 "complete":  10,
+                 "pending":  0,
+                 "failed":  0,
+                 "paused":  0
+             },
+    "summary":  {
+                    "all_directories_exist":  true,
+                    "canonical_reference_available":  true,
+                    "frame_states_complete":  true,
+                    "no_missing_assets":  true,
+                    "expected_frames":  57,
+                    "actual_frames":  57,
+                    "expected_states":  9,
+                    "frame_completion_ratio":  100,
+                    "jobs_completion_ratio":  100,
+                    "readiness_score":  100
+                },
+    "gate":  {
+                 "ready_for_generation":  true,
+                 "reasons":  [
+
+                             ]
+             }
+}

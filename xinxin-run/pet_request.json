@@ -1,0 +1,447 @@
+﻿{
+  "pet_id": "xinxin",
+  "display_name": "\u946b\u946b",
+  "description": "A graceful pink-and-white chibi companion inspired by gentle spring sunlight: elegant long dark hair, playful composure, and a smile that feels warm rather than loud. Xinxin reads as calm, responsive, and emotionally readable in one-frame loops.",
+  "created_at": "2026-05-09T02:27:58.117251+00:00",
+  "ip_version": "2.1",
+  "ip_contract_file": "prompts/xinxin-ip-contract.md",
+  "ip_contract_version": "2.1",
+  "atlas": {
+    "columns": 8,
+    "rows": 9,
+    "cell_width": 192,
+    "cell_height": 208,
+    "width": 1536,
+    "height": 1872
+  },
+  "rows": [
+    {
+      "state": "idle",
+      "row": 0,
+      "frames": 6,
+      "purpose": "neutral breathing/blinking loop"
+    },
+    {
+      "state": "running-right",
+      "row": 1,
+      "frames": 8,
+      "purpose": "rightward locomotion loop"
+    },
+    {
+      "state": "running-left",
+      "row": 2,
+      "frames": 8,
+      "purpose": "leftward locomotion loop"
+    },
+    {
+      "state": "waving",
+      "row": 3,
+      "frames": 4,
+      "purpose": "greeting gesture with raised wave and return"
+    },
+    {
+      "state": "jumping",
+      "row": 4,
+      "frames": 5,
+      "purpose": "anticipation, lift, peak, descent, settle"
+    },
+    {
+      "state": "failed",
+      "row": 5,
+      "frames": 8,
+      "purpose": "sad, failed, or deflated reaction"
+    },
+    {
+      "state": "waiting",
+      "row": 6,
+      "frames": 6,
+      "purpose": "patient waiting loop with small motion"
+    },
+    {
+      "state": "running",
+      "row": 7,
+      "frames": 6,
+      "purpose": "active working/in-progress loop"
+    },
+    {
+      "state": "review",
+      "row": 8,
+      "frames": 6,
+      "purpose": "focused inspecting or review loop"
+    }
+  ],
+  "layout_guides": [
+    {
+      "state": "idle",
+      "path": "references\\layout-guides\\idle.png",
+      "width": 1152,
+      "height": 208,
+      "frames": 6,
+      "cell_width": 192,
+      "cell_height": 208,
+      "safe_margin_x": 18,
+      "safe_margin_y": 16,
+      "usage": "layout guide input only; do not copy visible guide lines into generated sprite strips"
+    },
+    {
+      "state": "running-right",
+      "path": "references\\layout-guides\\running-right.png",
+      "width": 1536,
+      "height": 208,
+      "frames": 8,
+      "cell_width": 192,
+      "cell_height": 208,
+      "safe_margin_x": 18,
+      "safe_margin_y": 16,
+      "usage": "layout guide input only; do not copy visible guide lines into generated sprite strips"
+    },
+    {
+      "state": "running-left",
+      "path": "references\\layout-guides\\running-left.png",
+      "width": 1536,
+      "height": 208,
+      "frames": 8,
+      "cell_width": 192,
+      "cell_height": 208,
+      "safe_margin_x": 18,
+      "safe_margin_y": 16,
+      "usage": "layout guide input only; do not copy visible guide lines into generated sprite strips"
+    },
+    {
+      "state": "waving",
+      "path": "references\\layout-guides\\waving.png",
+      "width": 768,
+      "height": 208,
+      "frames": 4,
+      "cell_width": 192,
+      "cell_height": 208,
+      "safe_margin_x": 18,
+      "safe_margin_y": 16,
+      "usage": "layout guide input only; do not copy visible guide lines into generated sprite strips"
+    },
+    {
+      "state": "jumping",
+      "path": "references\\layout-guides\\jumping.png",
+      "width": 960,
+      "height": 208,
+      "frames": 5,
+      "cell_width": 192,
+      "cell_height": 208,
+      "safe_margin_x": 18,
+      "safe_margin_y": 16,
+      "usage": "layout guide input only; do not copy visible guide lines into generated sprite strips"
+    },
+    {
+      "state": "failed",
+      "path": "references\\layout-guides\\failed.png",
+      "width": 1536,
+      "height": 208,
+      "frames": 8,
+      "cell_width": 192,
+      "cell_height": 208,
+      "safe_margin_x": 18,
+      "safe_margin_y": 16,
+      "usage": "layout guide input only; do not copy visible guide lines into generated sprite strips"
+    },
+    {
+      "state": "waiting",
+      "path": "references\\layout-guides\\waiting.png",
+      "width": 1152,
+      "height": 208,
+      "frames": 6,
+      "cell_width": 192,
+      "cell_height": 208,
+      "safe_margin_x": 18,
+      "safe_margin_y": 16,
+      "usage": "layout guide input only; do not copy visible guide lines into generated sprite strips"
+    },
+    {
+      "state": "running",
+      "path": "references\\layout-guides\\running.png",
+      "width": 1152,
+      "height": 208,
+      "frames": 6,
+      "cell_width": 192,
+      "cell_height": 208,
+      "safe_margin_x": 18,
+      "safe_margin_y": 16,
+      "usage": "layout guide input only; do not copy visible guide lines into generated sprite strips"
+    },
+    {
+      "state": "review",
+      "path": "references\\layout-guides\\review.png",
+      "width": 1152,
+      "height": 208,
+      "frames": 6,
+      "cell_width": 192,
+      "cell_height": 208,
+      "safe_margin_x": 18,
+      "safe_margin_y": 16,
+      "usage": "layout guide input only; do not copy visible guide lines into generated sprite strips"
+    }
+  ],
+  "references": [
+    {
+      "path": "references\\reference-01.png",
+      "width": 1189,
+      "height": 1323,
+      "mode": "RGB",
+      "format": "PNG",
+      "source_path": "..\\..\\references\\mianmian-approved-base.png",
+      "copied_path": "references\\reference-01.png"
+    }
+  ],
+  "chroma_key": {
+    "hex": "#00FFFF",
+    "rgb": [
+      0,
+      255,
+      255
+    ],
+    "name": "user-selected",
+    "selection": "manual"
+  },
+  "pet_notes": "A tiny elegant human-like chibi digital pet named Xinxin. She is calm, attentive, and warm, moving in compact but legible micro-motions. Her identity is defined by long dark wavy hair with a soft edge, rounded face, thick brows, bright eye highlights, pastel pink-and-white layered clothing, a small gold necklace, and compact shoes to keep movement grounded and readable at 192x208.",
+  "style_notes": "Preserve the approved base identity exactly: keep the same face geometry, hair silhouette, pink-and-white outfit, side bow, layered skirt, and accessory scale. Maintain compact chibi anatomy with a dense dark 1-2 px outline, stepped edges, readable pose silhouette at native and downscaled previews, limited palette, and no complex micro-accessories. Motion should stay soft and controlled: no extreme squash/stretch, no blurry gradients, no heavy shadows, no glossy specular reflections, and no scene backgrounds.",
+  "visual_identity": {
+    "age_tone": "late-teen mascot",
+    "species_read": "digital mascot",
+    "signature_features": [
+      "long dark wavy hair with side bow ribbon",
+      "round face and soft sparkling eyes",
+      "compact neck-to-shoulder ratio",
+      "layered ruffled skirt with pink-and-white accents",
+      "small gold necklace",
+      "compact shoes and grounded foot placement"
+    ],
+    "palette_guardrails": {
+      "primary": [
+        "#f5d9df",
+        "#f8e8ef",
+        "#f5f2ee",
+        "#f6b39f",
+        "#8f5c4c",
+        "#c89b5a",
+        "#f7d77f"
+      ],
+      "prohibited": [
+        "neon gradients",
+        "photo textures",
+        "hard reflective gloss",
+        "heavy blur",
+        "overly thin antialiasing"
+      ]
+    },
+    "face_language": {
+      "eyes": "wide soft pupil highlights with gentle blink timing",
+      "mouth": "short rounded arcs and warm smile curves",
+      "pose": "upright and balanced with slight shoulder warmth"
+    }
+  },
+  "animation_contract": {
+    "intended_canvas": "192x208",
+    "motion_style": "small, rhythmic, readable",
+    "tempo_guideline_ms": "60-110",
+    "spatial_limits": "minimal overlap with frame boundary, no silhouette distortion",
+    "loop_constraints": {
+      "idle": "breathing pulse + one blink every 2-3 seconds",
+      "running": "even cadence, no random frame jitter",
+      "waving": "clear hand lift and return with neutral hold",
+      "review": "micro-tilt and clear sustain"
+    },
+    "continuity_guards": [
+      "preserve left-right silhouette weight when mirroring",
+      "keep accessory orientation stable relative to body",
+      "avoid abrupt shape changes between last and first frame",
+      "ensure every state resolves to a stable base pose"
+    ]
+  },
+  "state_contracts": [
+    {
+      "state": "idle",
+      "goal": "stable baseline",
+      "beats": [
+        "tiny chest rise",
+        "soft gaze hold",
+        "gentle blink"
+      ],
+      "dos": [
+        "keep proportions",
+        "reduce movement amplitude"
+      ],
+      "donts": [
+        "no arm swing",
+        "no torso shift"
+      ]
+    },
+    {
+      "state": "waiting",
+      "goal": "patient anticipation",
+      "beats": [
+        "small forward lean",
+        "micro arm drift",
+        "stable recovery"
+      ],
+      "dos": [
+        "add calm timing",
+        "keep feet planted"
+      ],
+      "donts": [
+        "no abrupt pause",
+        "no abrupt head turn"
+      ]
+    },
+    {
+      "state": "running-right",
+      "goal": "forward rhythm",
+      "beats": [
+        "heel lift",
+        "hip follow-through",
+        "arm return"
+      ],
+      "dos": [
+        "mirror with running-left",
+        "keep frame cadence regular"
+      ],
+      "donts": [
+        "uneven stride",
+        "sudden body jump"
+      ]
+    },
+    {
+      "state": "running-left",
+      "goal": "mirrored forward rhythm",
+      "beats": [
+        "heel lift",
+        "hip follow-through",
+        "arm return"
+      ],
+      "dos": [
+        "mirror right-state energy",
+        "keep weight balanced"
+      ],
+      "donts": [
+        "flip whole body scale",
+        "change head scale"
+      ]
+    },
+    {
+      "state": "waving",
+      "goal": "friendly greeting",
+      "beats": [
+        "raise",
+        "peak hold",
+        "return"
+      ],
+      "dos": [
+        "friendly smile timing",
+        "small shoulder lift"
+      ],
+      "donts": [
+        "over-rotation",
+        "wide elbow arc"
+      ]
+    },
+    {
+      "state": "jumping",
+      "goal": "hopeful lift",
+      "beats": [
+        "prep bend",
+        "ascent",
+        "peak pause",
+        "fall",
+        "recover"
+      ],
+      "dos": [
+        "uniform arc",
+        "soft landing"
+      ],
+      "donts": [
+        "huge vertical jump",
+        "lost balance"
+      ]
+    },
+    {
+      "state": "failed",
+      "goal": "gentle recovery",
+      "beats": [
+        "energy drop",
+        "self-soothe",
+        "rebound"
+      ],
+      "dos": [
+        "preserve face warmth",
+        "low-amplitude motion"
+      ],
+      "donts": [
+        "drama spikes",
+        "jerky collapse"
+      ]
+    },
+    {
+      "state": "running",
+      "goal": "light productive movement",
+      "beats": [
+        "short stride",
+        "small bounce",
+        "steady pulse"
+      ],
+      "dos": [
+        "constant rhythm",
+        "stable shoulder axis"
+      ],
+      "donts": [
+        "sudden acceleration",
+        "jerky stop"
+      ]
+    },
+    {
+      "state": "review",
+      "goal": "focused check",
+      "beats": [
+        "forward lean",
+        "micro blink",
+        "confirm and settle"
+      ],
+      "dos": [
+        "quiet concentration",
+        "tiny head tilt"
+      ],
+      "donts": [
+        "nervous jitter",
+        "exaggerated mouth"
+      ]
+    }
+  ],
+  "personality_profile": {
+    "core_traits": [
+      "calm",
+      "attentive",
+      "warm",
+      "gentle-energetic"
+    ],
+    "interaction_style": {
+      "greeting": "small but complete gestures before moving",
+      "problem_mode": "brief slowdown followed by recovery",
+      "focus_mode": "micro-lean, controlled blink cadence"
+    },
+    "motion_safety": {
+      "max_horizontal_shift_px": 3,
+      "max_vertical_shift_px": 4,
+      "min_breathing_visibility": true
+    }
+  },
+  "house_style": "Codex digital pet sprite style: pixel-art-adjacent low-resolution mascot sprite, compact chibi proportions, chunky whole-body silhouette, thick dark 1-2 px outline, visible stepped/pixel edges, limited palette, flat cel shading with at most one small highlight and one shadow step, simple readable face, tiny limbs, and no detail that disappears at 192x208. Avoid polished illustration, painterly rendering, anime key art, 3D render, vector app-icon polish, glossy lighting, soft gradients, realistic fur or material texture, anti-aliased high-detail edges, and complex tiny accessories.",
+  "primary_generation_skill": "$imagegen",
+  "canonical_identity_reference": {
+    "path": "references\\canonical-base.png",
+    "source_job": "base",
+    "sha256": "e1c0896305a45a0ad2d446944f8b82ec873d77785993da82295e71916f72bf1a",
+    "metadata": {
+      "width": 1189,
+      "height": 1323,
+      "mode": "RGB",
+      "format": "PNG"
+    }
+  }
+}
