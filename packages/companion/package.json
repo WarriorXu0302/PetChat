@@ -1,0 +1,42 @@
+{
+  "name": "@petchat/companion",
+  "version": "0.1.0",
+  "private": true,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./parsers/feishu": {
+      "types": "./dist/parsers/feishu.d.ts",
+      "default": "./dist/parsers/feishu.js"
+    },
+    "./backend": {
+      "types": "./dist/backend/index.d.ts",
+      "default": "./dist/backend/index.js"
+    }
+  },
+  "bin": {
+    "petchat-companion": "./src/cli.ts",
+    "petchat-feishu-parse": "./src/parsers/feishu-cli.ts"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "cli": "tsx src/cli.ts",
+    "parse-feishu": "tsx src/parsers/feishu-cli.ts"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.32.1",
+    "@petchat/shared": "workspace:*",
+    "better-sqlite3": "^11.5.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.12",
+    "typescript": "^5.6.3",
+    "tsx": "^4.19.2"
+  }
+}

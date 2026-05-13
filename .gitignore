@@ -1,7 +1,16 @@
+# node / ts
+node_modules/
+dist/
+out/
+*.tsbuildinfo
+.turbo/
+
+# python (legacy, being removed)
 __pycache__/
 *.pyc
 *.pyo
 .venv/
+
 .env
 *.sqlite
 *.sqlite-journal
@@ -10,3 +19,5 @@ __pycache__/
 # companion runtime artifacts (regenerated locally)
 companion/personas/
 companion/runtime/
+packages/companion/personas/
+packages/companion/runtime/

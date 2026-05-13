@@ -1,7 +1,0 @@
-personas/
-runtime/
-*.sqlite
-*.sqlite-journal
-__pycache__/
-*.pyc
-.venv/

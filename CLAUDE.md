@@ -4,13 +4,18 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Repository purpose
 
-This repo is an **asset pipeline and release harness** for a chibi-mascot sprite pack ("xinxin"). The deliverable is a sprite atlas (`final/spritesheet.png` + per-state PNGs) generated via an `$imagegen` skill from prompts, then audited and gated before release. There is no application code — the "product" is the JSON contracts, prompts, generated frames, and the PowerShell + GitHub Actions automation that governs their production and release.
+This repo ("PetChat") is a desktop companion prototype with two tracks:
 
-`xinxin-run/` is the only live run directory. The README note that `kea-run` is history-only still applies — it has already been removed; do not recreate or reference it.
+1. **Desktop companion** (`packages/`, `apps/desktop/`) — TypeScript / Electron. A chat UI that switches between a distilled AI persona and a Feishu real-person relay, backed by a shared `ChatBackend` interface. This is the active product.
+2. **Sprite asset pipeline** (`xinxin-run/`, `scripts/`, `.github/workflows/`) — PowerShell. Legacy pipeline that produces the `final/spritesheet.png` used as the desktop pet's visual. Still functional, slated for TS migration after the companion stabilises.
+
+`xinxin-run/` is the only live sprite run directory. `kea-run` has been removed; do not recreate or reference it.
 
 ## Conventions (important)
 
-- **All automation is PowerShell (`.ps1`).** Commands in docs assume Windows paths (`D:\pet`, backslashes). On macOS/Linux use `pwsh` and translate paths to `./xinxin-run` etc. Do not rewrite scripts to bash — the CI workflows invoke them via `powershell -ExecutionPolicy Bypass -File ...`.
+- **Target language is TypeScript.** New code lives in `packages/*` or `apps/*` under the pnpm workspace. `python3` / `.py` files should no longer be introduced — the Python companion prototype has been removed.
+- **Workspace layout**: `packages/shared` (zod schemas, the cross-package type source of truth), `packages/companion` (backend + distiller + parsers + CLI), `apps/desktop` (Electron main/preload in CJS, React renderer via Vite). The desktop main process `require`s the **built** `packages/companion/dist` output — always run `pnpm -r build` after changing companion sources before launching Electron.
+- **Sprite pipeline is PowerShell (legacy).** Commands in `scripts/` assume Windows paths (`D:\pet`, backslashes). On macOS/Linux use `pwsh` and translate paths to `./xinxin-run` etc. Do not rewrite those scripts to bash — the existing CI workflows invoke them via `powershell -ExecutionPolicy Bypass -File ...`. The TS migration for this track has not started yet.
 - **Script docs live in `scripts/README.md`**, which is the authoritative index of every `.ps1` entry point and its flags. Read it before adding a new script or changing a flag — downstream scripts and workflows consume the documented fields (`health_status`, `remediation_plan_steps`, `release_cycle_board_*`, etc.) by name.
 - **JSON outputs are the contract between stages.** Adding or renaming a field in one stage's output (e.g. `run-status.json`, `release-gate.json`, `recovery-cycle-report.json`) can silently break a later stage or a CI workflow that greps for it. Search the other scripts and `.github/workflows/*.yml` before changing a field name.
 - **Run artifacts are timestamped** (`run-audit-YYYYMMDD-HHmmss.json`, `run-log-*.md`). Most scripts default to "read the newest" when a specific `-AuditFile` / `-ReportPath` is not passed. Preserve that convention.
